@@ -1,24 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Admin, Resource, ListGuesser, EditGuesser, fetchUtils } from 'react-admin';
+import PostIcon from '@mui/icons-material/Book';
+import ServerProvider from 'ra-data-json-server';
+import ListField from "./Components/ListField";
+import EditList from './Components/EditList'
+import PostCreate from "./Components/PostCreate";
+const url = "http://159.65.123.228/login/get"
 
+
+const dataProvider = ServerProvider('http://localhost:3000/login')
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Admin dataProvider={dataProvider} >
+      <Resource name="users" list={ListField} icon={PostIcon} />
+    </Admin>
   );
 }
 
